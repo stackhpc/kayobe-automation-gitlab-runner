@@ -1,0 +1,17 @@
+---
+- hosts: gitlab_runners
+  gather_facts: false
+  tasks:
+    - name: Determine if python is installed
+      raw: which python3
+      failed_when: false
+      changed_when: false
+      register: python
+
+    - name: Install python
+      raw: dnf install python3 -y
+      become: true
+      when: python.rc != 0
+
+    - command: echo hi
+

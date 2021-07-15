@@ -1,0 +1,3 @@
+[gitlab_runners]
+scientific-openstack-gitlab-runner ansible_host=10.0.1.44 ansible_user=centos
+

@@ -1,0 +1,3 @@
+collections:
+# for gitlab modules
+- name: community.general

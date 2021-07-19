@@ -69,6 +69,17 @@
        become: true
        notify: restart docker
 
+    - name: Setup a cron job to prune docker resources
+      tags:
+        - cron
+      ansible.builtin.cron:
+        name: Nightly docker system prune
+        minute: "0"
+        hour: "3"
+        user: root
+        job: "/usr/bin/docker system prune -f > /dev/null"
+        cron_file: ansible_docker-system-prune
+
   handlers:
     - name: restart docker
       service:

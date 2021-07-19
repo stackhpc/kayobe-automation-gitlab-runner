@@ -1,3 +1,5 @@
-collections:
-# for gitlab modules
-- name: community.general
+---
+
+roles:
+  - src: geerlingguy.docker
+  - src: riemers.gitlab-runner

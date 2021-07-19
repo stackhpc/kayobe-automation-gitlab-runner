@@ -1,4 +1,3 @@
 ansible
 ansible-cached-lookup
-python-gitlab
 

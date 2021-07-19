@@ -1,17 +1,78 @@
 ---
 - hosts: gitlab_runners
-  gather_facts: false
   tasks:
+    - name: Validate gitlab runner configuration
+      tags:
+        - always
+      assert:
+        that:
+          - gitlab_runner_runners is defined
+          - gitlab_runner_registration_token is defined
+
     - name: Determine if python is installed
+      tags:
+        - dependencies
       raw: which python3
       failed_when: false
       changed_when: false
       register: python
 
     - name: Install python
+      tags:
+      - dependencies
       raw: dnf install python3 -y
       become: true
       when: python.rc != 0
 
-    - command: echo hi
+    # No longer required no we have switch to the role?
+    # Although the role is slow... the ansible module had limited functionality
+    # - name: Import gitlab GPG signing package
+    #   ansible.builtin.rpm_key:
+    #     state: present
+    #     key: https://packages.gitlab.com/runner/gitlab-runner/gpgkey/runner-gitlab-runner-4C80FB51394521E9.pub.gpg
+    #   become: true
+
+    - name: Install docker
+      # NOTE: requires facts
+      tags:
+        - dependencies
+      import_role:
+        name: geerlingguy.docker
+      vars:
+        ansible_become: true
+
+    - name: Add docker group
+      tags:
+        - dependencies
+        - group
+      group:
+        name: docker
+      become: true
+
+    - name: Configure gitlab runners
+      tags:
+        - gitlab
+      import_role:
+        name: riemers.gitlab-runner
+
+    -  name: Configure /etc/docker/daemon.json
+       # If using overlay network on vglab, we will need to set the mtu lower.
+       tags:
+          - workarounds
+       copy:
+         content: |
+          {
+            "mtu": {{ stackhpc_gitlab_runner_docker_mtu }}
+          }
+         dest: /etc/docker/daemon.json
+       when: stackhpc_gitlab_runner_docker_mtu is defined
+       become: true
+       notify: restart docker
+
+  handlers:
+    - name: restart docker
+      service:
+        name: docker
+        state: restarted
+      become: true
 

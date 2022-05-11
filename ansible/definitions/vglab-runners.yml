@@ -1,15 +1,17 @@
 ---
 
+stackhpc_gitlab_runner_environment: vglab
+
 gitlab_runner_coordinator_url: https://gitlab.com/
 
 gitlab_runner_runners:
-  - name: 'VGLAB AIO runner'
+  - name: '{{ stackhpc_gitlab_runner_environment }} AIO runner'
     executor: docker
     docker_image: 'centos:8'
     output_limit: 24576
     run_untagged: false
     tags:
-      - vglab
+      - "{{ stackhpc_gitlab_runner_environment }}"
     docker_volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/cache"
@@ -20,13 +22,13 @@ gitlab_runner_runners:
         tls_verify: false
         privileged: true
 
-  - name: 'VGLAB Builder'
+  - name: '{{ stackhpc_gitlab_runner_environment }} Builder'
     executor: docker
     docker_image: 'centos:8'
     output_limit: 24576
     run_untagged: false
     tags:
-      - vglab-builder
+      - "{{ stackhpc_gitlab_runner_environment }}-builder"
       - dind
     docker_volumes:
       - "/cache"

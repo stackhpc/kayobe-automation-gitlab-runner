@@ -1,0 +1,40 @@
+---
+
+gitlab_runner_coordinator_url: https://gitlab.com/
+
+gitlab_runner_runners:
+  - name: 'VGLAB AIO runner'
+    executor: docker
+    docker_image: 'centos:8'
+    output_limit: 24576
+    run_untagged: false
+    tags:
+      - vglab
+    docker_volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/cache"
+      - "/certs/client"
+      - "/dev:/dev"
+    extra_configs:
+      runners.docker:
+        tls_verify: false
+        privileged: true
+
+  - name: 'VGLAB Builder'
+    executor: docker
+    docker_image: 'centos:8'
+    output_limit: 24576
+    run_untagged: false
+    tags:
+      - vglab-builder
+      - dind
+    docker_volumes:
+      - "/cache"
+      - "/certs/client"
+      - "/dev:/dev"
+    extra_configs:
+      runners.docker:
+        tls_verify: false
+        privileged: true
+
+stackhpc_gitlab_runner_docker_mtu: 1442

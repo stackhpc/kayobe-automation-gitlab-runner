@@ -22,3 +22,8 @@ variable "network" {
     type = string
     default = "stackhpc-ipv4-geneve"
 }
+
+variable "remote_user" {
+   type = string
+   default = "centos"
+}

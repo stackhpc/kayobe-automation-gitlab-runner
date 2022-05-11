@@ -1,6 +1,6 @@
 ---
 
-stackhpc_gitlab_runner_environment: vglab
+stackhpc_gitlab_runner_environment: arcus
 
 gitlab_runner_coordinator_url: https://gitlab.com/
 
@@ -17,7 +17,14 @@ gitlab_runner_runners:
       - "/cache"
       - "/certs/client"
       - "/dev:/dev"
-    extra_configs:
+    env_vars:
+      - "TF_VAR_aio_rocky_vm_image=RockyLinux-8.5-20211114.2" 
+      - "TF_VAR_aio_rocky_vm_keypair=gitlab-runner"
+      - "TF_VAR_aio_rocky_vm_flavor=vm.alaska.cpu.general.quarter"
+      - "TF_VAR_aio_rocky_vm_network=rcp-scientific-openstack-ci-cd"
+      - "TF_VAR_aio_rocky_vm_subnet=rcp-scientific-openstack-ci-cd"
+      - "TERRAFORM_OPENRC={{ lookup('file', '~/arcus.env') }}"
+   extra_configs:
       runners.docker:
         tls_verify: false
         privileged: true

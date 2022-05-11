@@ -1,5 +1,5 @@
 locals {
-   gitlab_runner_hosts = [{"name": openstack_compute_instance_v2.scientific_openstack_runner.name, "ansible_host": openstack_compute_instance_v2.scientific_openstack_runner.access_ip_v4, ansible_user: "centos"}]
+   gitlab_runner_hosts = [{"name": openstack_compute_instance_v2.scientific_openstack_runner.name, "ansible_host": openstack_compute_instance_v2.scientific_openstack_runner.access_ip_v4, ansible_user: var.remote_user}]
 }
 
 

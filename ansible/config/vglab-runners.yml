@@ -6,7 +6,7 @@ stackhpc_gitlab_runner_terraform_openrc: "{{ lookup('file', '~/vglab.env') }}"
 gitlab_runner_coordinator_url: https://gitlab.com/
 
 gitlab_runner_runners:
-  - name: '{{ stackhpc_gitlab_runner_environment | uppercase }} AIO runner'
+  - name: '{{ stackhpc_gitlab_runner_environment | upper }} AIO runner'
     executor: docker
     docker_image: 'centos:8'
     output_limit: 24576
@@ -25,7 +25,7 @@ gitlab_runner_runners:
         tls_verify: false
         privileged: true
 
-  - name: '{{ stackhpc_gitlab_runner_environment | uppercase }} Builder'
+  - name: '{{ stackhpc_gitlab_runner_environment | upper }} Builder'
     executor: docker
     docker_image: 'centos:8'
     output_limit: 24576

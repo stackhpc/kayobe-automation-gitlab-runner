@@ -1,6 +1,7 @@
 ---
 
 stackhpc_gitlab_runner_environment: vglab
+stackhpc_gitlab_runner_terraform_openrc: "{{ lookup('file', '~/vglab.env') }}"
 
 gitlab_runner_coordinator_url: https://gitlab.com/
 

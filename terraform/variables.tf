@@ -27,3 +27,8 @@ variable "remote_user" {
    type = string
    default = "centos"
 }
+
+variable "name" {
+  type = string
+  default = "scientific-openstack-gitlab-runner-0"
+}

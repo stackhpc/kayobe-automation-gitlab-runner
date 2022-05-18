@@ -4,7 +4,7 @@ data "openstack_images_image_v2" "image" {
 }
 
 resource "openstack_compute_instance_v2" "scientific_openstack_runner" {
-  name            = "scientific-openstack-gitlab-runner-0"
+  name            = var.name
   image_id      = data.openstack_images_image_v2.image.id
   flavor_name     = var.flavor
   key_pair        = var.keypair

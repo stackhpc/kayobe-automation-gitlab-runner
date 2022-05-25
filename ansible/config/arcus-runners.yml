@@ -15,6 +15,7 @@ gitlab_runner_runners:
       - "{{ stackhpc_gitlab_runner_environment }}"
     docker_volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/usr/bin/docker:/usr/bin/docker"
       - "/cache"
       - "/certs/client"
       - "/dev:/dev"

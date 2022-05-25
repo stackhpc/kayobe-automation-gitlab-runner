@@ -20,16 +20,6 @@ gitlab_runner_runners:
       - "/dev:/dev"
       - "/etc/terraform-openrc:/etc/terraform-openrc:ro"
     env_vars:
-      - "TF_VAR_aio_rocky_vm_image=RockyLinux-8.5-20211114.2"
-      - "TF_VAR_aio_rocky_vm_keypair=gitlab-runner"
-      - "TF_VAR_aio_rocky_vm_flavor=vm.alaska.cpu.general.quarter"
-      - "TF_VAR_aio_rocky_vm_network=rcp-scientific-openstack-ci-cd"
-      - "TF_VAR_aio_rocky_vm_subnet=rcp-scientific-openstack-ci-cd"
-      - "TF_VAR_aio_centos7_vm_image=CentOS7-2111"
-      - "TF_VAR_aio_centos7_vm_keypair=gitlab-runner"
-      - "TF_VAR_aio_centos7_vm_flavor=vm.alaska.cpu.general.quarter"
-      - "TF_VAR_aio_centos7_vm_network=rcp-scientific-openstack-ci-cd"
-      - "TF_VAR_aio_centos7_vm_subnet=rcp-scientific-openstack-ci-cd"
       - "TF_VAR_boot_from_volume=false"
       - "TERRAFORM_OPENRC=/etc/terraform-openrc"
     extra_configs:

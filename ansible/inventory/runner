@@ -1,3 +1,4 @@
 [gitlab_runners]
 scientific-openstack-gitlab-runner ansible_host=10.0.1.44 ansible_user=centos
-
+#arcus-kayobe-gitlab-runner-0 ansible_host=192.168.45.253 ansible_user=rocky
+#scientific-openstack-kayobe-gitlab-runner-0 ansible_host=192.168.45.59 ansible_user=rocky

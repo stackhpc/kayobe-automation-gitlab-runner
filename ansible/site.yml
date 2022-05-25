@@ -3,7 +3,7 @@
   tasks:
     - name: Validate gitlab runner configuration
       tags:
-        - always
+        - never
       assert:
         that:
           - gitlab_runner_runners is defined

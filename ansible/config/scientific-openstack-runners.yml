@@ -1,6 +1,6 @@
 ---
 
-stackhpc_gitlab_runner_environment: arcus
+stackhpc_gitlab_runner_environment: vglab
 stackhpc_gitlab_runner_terraform_openrc: "{{ lookup('file', '~/arcus.env') }}"
 
 gitlab_runner_coordinator_url: https://gitlab.com/
@@ -53,3 +53,5 @@ gitlab_runner_runners:
       runners.docker:
         tls_verify: false
         privileged: true
+
+stackhpc_gitlab_runner_docker_mtu: 1442

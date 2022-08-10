@@ -85,7 +85,7 @@
         minute: "0"
         hour: "3"
         user: root
-        job: "/usr/bin/docker system prune -f > /dev/null"
+        job: "/usr/bin/docker system prune -af > /dev/null"
         cron_file: ansible_docker-system-prune
 
   handlers:

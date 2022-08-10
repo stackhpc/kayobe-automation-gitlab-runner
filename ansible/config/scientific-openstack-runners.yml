@@ -36,6 +36,9 @@ gitlab_runner_runners:
       - "{{ stackhpc_gitlab_runner_environment }}-builder"
       - dind
     docker_volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/usr/bin/docker:/usr/bin/docker"
+      - "/tmp:/tmp"
       - "/cache"
       - "/certs/client"
       - "/dev:/dev"

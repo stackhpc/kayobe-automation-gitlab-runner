@@ -1,6 +1,6 @@
 ---
 
-stackhpc_gitlab_runner_environment: vglab
+stackhpc_gitlab_runner_environment: arcus
 stackhpc_gitlab_runner_terraform_openrc: "{{ lookup('file', '~/arcus.env') }}"
 
 gitlab_runner_coordinator_url: https://gitlab.com/
@@ -15,11 +15,28 @@ gitlab_runner_runners:
       - "{{ stackhpc_gitlab_runner_environment }}"
     docker_volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/usr/bin/docker:/usr/bin/docker"
+      - "/tmp:/tmp"
       - "/cache"
       - "/certs/client"
       - "/dev:/dev"
       - "/etc/terraform-openrc:/etc/terraform-openrc:ro"
     env_vars:
+      - "TF_VAR_aio_stream8_vm_image=CentOS-Stream-GenericCloud-8-20220913.0.x86_64"
+      - "TF_VAR_aio_stream8_vm_keypair=gitlab-runner"
+      - "TF_VAR_aio_stream8_vm_flavor=vm.ska.cpu.general.half"
+      - "TF_VAR_aio_stream8_vm_network=rcp-scientific-openstack-ci-cd"
+      - "TF_VAR_aio_stream8_vm_subnet=rcp-scientific-openstack-ci-cd"
+      - "TF_VAR_aio_rocky_vm_image=RockyLinux-8.5-20211114.2"
+      - "TF_VAR_aio_rocky_vm_keypair=gitlab-runner"
+      - "TF_VAR_aio_rocky_vm_flavor=vm.ska.cpu.general.half"
+      - "TF_VAR_aio_rocky_vm_network=rcp-scientific-openstack-ci-cd"
+      - "TF_VAR_aio_rocky_vm_subnet=rcp-scientific-openstack-ci-cd"
+      - "TF_VAR_aio_centos7_vm_image=CentOS7-2111"
+      - "TF_VAR_aio_centos7_vm_keypair=gitlab-runner"
+      - "TF_VAR_aio_centos7_vm_flavor=vm.alaska.cpu.general.quarter"
+      - "TF_VAR_aio_centos7_vm_network=rcp-scientific-openstack-ci-cd"
+      - "TF_VAR_aio_centos7_vm_subnet=rcp-scientific-openstack-ci-cd"
       - "TF_VAR_boot_from_volume=false"
       - "TERRAFORM_OPENRC=/etc/terraform-openrc"
     extra_configs:
@@ -47,4 +64,4 @@ gitlab_runner_runners:
         tls_verify: false
         privileged: true
 
-stackhpc_gitlab_runner_docker_mtu: 1442
+stackhpc_gitlab_runner_docker_mtu: 1450

@@ -10,7 +10,7 @@
           - gitlab_runner_registration_token is defined
           - stackhpc_gitlab_runner_terraform_openrc is defined
 
-    - name: Copy file
+    - name: Copy openrc file
       copy:
         content: "{{ stackhpc_gitlab_runner_terraform_openrc }}"
         dest: "/etc/terraform-openrc"

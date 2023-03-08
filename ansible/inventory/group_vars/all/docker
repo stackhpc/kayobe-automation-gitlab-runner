@@ -1,4 +1,7 @@
 
-docker_daemon_options:
-  mtu: "{{ stackhpc_gitlab_runner_docker_mtu | default(1500) }}"
+docker_daemon_options: "{{ docker_daemon_options_default | combine(docker_daemon_options_extra) }}"
+
+docker_daemon_options_default:
   live-restore: true
+
+docker_daemon_options_extra: {}

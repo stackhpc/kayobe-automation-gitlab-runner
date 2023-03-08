@@ -45,4 +45,5 @@ gitlab_runner_runners:
         tls_verify: false
         privileged: true
 
-stackhpc_gitlab_runner_docker_mtu: 1442
+docker_daemon_options_extra:
+  mtu: 1442

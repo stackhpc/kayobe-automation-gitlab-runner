@@ -63,20 +63,6 @@
       import_role:
         name: riemers.gitlab-runner
 
-    -  name: Configure /etc/docker/daemon.json
-       # If using overlay network on vglab, we will need to set the mtu lower.
-       tags:
-          - workarounds
-       copy:
-         content: |
-          {
-            "mtu": {{ stackhpc_gitlab_runner_docker_mtu }}
-          }
-         dest: /etc/docker/daemon.json
-       when: stackhpc_gitlab_runner_docker_mtu is defined
-       become: true
-       notify: restart docker
-
     - name: Setup a cron job to prune docker resources
       tags:
         - cron
@@ -87,11 +73,3 @@
         user: root
         job: "/usr/bin/docker system prune -af > /dev/null"
         cron_file: ansible_docker-system-prune
-
-  handlers:
-    - name: restart docker
-      service:
-        name: docker
-        state: restarted
-      become: true
-

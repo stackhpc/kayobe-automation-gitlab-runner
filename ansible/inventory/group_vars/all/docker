@@ -1,0 +1,4 @@
+
+docker_daemon_options:
+  mtu: "{{ stackhpc_gitlab_runner_docker_mtu | default(1500) }}"
+  live-restore: true

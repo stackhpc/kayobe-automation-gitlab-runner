@@ -3,3 +3,4 @@
 roles:
   - src: geerlingguy.docker
   - src: riemers.gitlab-runner
+    version: v1.6.52

@@ -16,7 +16,6 @@ gitlab_runner_runners:
     docker_volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "/usr/bin/docker:/usr/bin/docker"
-      - "/tmp:/tmp"
       - "/cache"
       - "/certs/client"
       - "/dev:/dev"
